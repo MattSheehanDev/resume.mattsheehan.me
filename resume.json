@@ -1,0 +1,150 @@
+{
+  "basics": {
+    "name": "Matt Sheehan",
+    "label": "Software Developer",
+    "summary": "Fulfill a position where creative programming is inspired, learning and research is encouraged, and hard work is valued.",
+    "website": "http://mattsheehan.me",
+    "phone": "330-614-1599",
+    "email": "sheehamj@outlook.com",
+    "picture": "self_art-circle.png",
+    "location": {
+      "address": "2131 Copley Rd",
+      "postalCode": "44320",
+      "city": "Akron",
+      "countryCode": "US",
+      "region": "OH"
+    },
+    "profiles": [
+      {
+        "network": "Github",
+        "username": "sheehamj13",
+        "url": "http://github.com/sheehamj13"
+      }
+    ]
+  },
+  "work": [
+    {
+      "company": "Apteryx, Inc",
+      "position": "Software Developer",
+      "website": "http://www.apteryx.com",
+      "startDate": "2013-05-20",
+      "endDate": "2016-01-01",
+      "summary": "",
+      "highlights": [
+        "Developed Windows 8/8.1 metro app for viewing x-rays with image enhancement algorithms and manipulations (gaussian blur, unsharp mask, b/c/g, ...).",
+        "Initiated cloud web application with the ability to enhance images with WebGL shaders.",
+        "Created the canonical internal javascript library for web applicatins, including web-components and custom binding tags.",
+        "Deployed a distributed system of micro-services for file syncing, program logging, and user auditing.",
+        "Programmed in technologies including DirectX, ASP.NET MVC, WebGL, SQLite, and SQL Server."
+      ]
+    },
+    {
+      "company": "Alliance Computer Exchange",
+      "position": "Computer Repair Technician",
+      "website": "http://www.alliancecomputerexchange.com",
+      "startDate": "2011-08-01",
+      "endDate": "2012-12-15",
+      "highlights": [
+        "Performed technical assessments and serviced customer computers.",
+        "Disassembled computers, printers, and any other electronics to recycle the individual components.",
+        "Developed company website."
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "Languages",
+      "level": "Master",
+      "keywords": [
+        "C++",
+        "C#",
+        "PHP"
+      ]
+    },
+    {
+      "name": "Web Development",
+      "level": "Master",
+      "keywords": [
+        "Typescript",
+        "Javascript",
+        "HTML", "LESS", "CSS"
+      ]
+    },
+    {
+      "name": "Databases",
+      "level": "Master",
+      "keywords": [
+        "SQL Server",
+        "MySQL",
+        "SQLite"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Mount Union",
+      "studyType": "Bachelor",
+      "startDate": "2009-08-01",
+      "endDate": "2013-05-01",
+      "gpa": "3.47",
+      "courses": [
+        "Algorithms and Data Structures",
+        "Computer Networks"
+      ]
+    }
+  ],
+  "awards": [
+    {
+      "title": "Kappa Kappa Psi Honorary Band Fraternity"
+    },
+    {
+      "title": "Phi Kappa Tau Fraternity",
+      "summary": "Community Service Board"
+    },
+    {
+      "title": "Marching and Concert Band",
+      "summary": "Trombone"
+    },
+    {
+      "title": "Eagle Scout"
+    }
+  ],
+  "publications": [
+    {
+      "name": "Personal site",
+      "website": "http://mattsheehan.me",
+      "summary": "The web home of Matt Sheehan"
+    },
+    {
+      "name": "mslisp",
+      "website": "https://github.com/sheehamj13/mslisp",
+      "summary": ".NET toy lisp dialect"
+    }
+  ],
+  "interests": [
+    {
+      "name": "Programming",
+      "summary": "",
+      "keywords": [
+        "Language Design",
+        "Program Architecture",
+        "Embedded Systems"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Native Speaker"
+    }
+  ],
+  "references": [
+    {
+      "name": "Matt Sheehan",
+      "reference": "This guy is as incredible as he is handsome!"
+    },
+    {
+      "name": "References upon request."
+    }
+  ]
+}

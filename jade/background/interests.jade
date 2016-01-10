@@ -1,0 +1,20 @@
+if (resume.interests && resume.interests.length > 0)
+  .detail#interests
+    .icon
+      i.fs-lg.icon-heart
+      span.mobile-title Interests
+
+    .info
+      h4.title.text-uppercase Interests
+
+      .content
+        ul.list-unstyled
+          - each interest in resume.interests
+            li.card.card-nested
+              p
+                strong= interest.name
+
+              if (interest.keywords && interest.keywords.length)
+                .space-top.labels
+                  - each keyword in interest.keywords
+                    span.label.label-keyword= keyword

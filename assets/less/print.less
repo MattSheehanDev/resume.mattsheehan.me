@@ -1,0 +1,56 @@
+@media print {
+    a[href]:after {
+        content: none !important;
+    }
+
+    .card {
+      border: none;
+    }
+
+    #profile-card {
+        text-align: center;
+        padding: 0;
+
+        .profile-pic {
+            display: inline-block;
+            vertical-align: middle;
+            img {
+                border-radius: 0;
+            }
+        }
+
+        .name-and-profession {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 15px;
+        }
+
+        .contact-details {
+            .detail {
+                .make-xs-column(3);
+                padding: 0;
+            }
+        }
+
+        // .social-links {
+        //   display: none;
+        // }
+    }
+    #background-card {
+      padding: 0;
+    }
+
+    .floating-nav, .floating-nav-trigger {
+        display: none;
+    }
+
+    .pagebreak {
+        page-break-after: auto;
+    }
+    .nopagebreak {
+      page-break-after: avoid;
+      page-break-before: avoid;
+    }
+
+
+}

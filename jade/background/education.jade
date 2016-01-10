@@ -1,0 +1,42 @@
+if (resume.education != null && resume.education.length > 0)
+  .detail#education
+    .icon
+      i.fs-lg.icon-graduation-cap
+      span.mobile-title Education
+
+    .info
+      h4.title.text-uppercase Education
+
+      .content
+        ul.list-unstyled
+          - each education_info in resume.education
+            li.card.card-nested
+              .content
+                p.clear-margin.relative
+                  if !education_info.endDate
+                    i.icon-circle.current-event(
+                      rel="tooltip",
+                      title="Currently Pursuing",
+                      data-placement="left"
+                    )
+
+                  - var edu = []
+                  if (education_info.institution)
+                    - edu.push(education_info.institution)
+                  if (education_info.area)
+                    - edu.push(education_info.area)
+                  if (education_info.studyType)
+                    - edu.push(education_info.studyType)
+                      
+                  strong
+                    |#{edu.join(", ")}
+
+                p.text-muted
+                  small
+                    |#{education_info.startDate} - #{education_info.endDate || 'Present'}
+                i= education_info.gpa
+
+                if (education_info.courses != null && education_info.courses.length > 0)
+                  .space-top.labels
+                    - each course in education_info.courses
+                      span.label.label-keyword= course
