@@ -1,93 +1,166 @@
-.relative {
-    position: relative;
-}
+@green-darker: hsl(145, 63%, 32%);
+@green-dark: hsl(145, 63%, 42%);
+@green: hsl(145, 63%, 62%);
+@green-light: hsl(145, 5%, 95%);
 
-.clear-margin {
-    margin: 0;
-}
+@grey: #999;
+@grey-light: #EEE;
+@grey-off: #F4F2F0;
 
-.space-top {
-    margin-top: 10px;
-}
 
-.space-right {
-    margin-right: 10px;
-}
+#utilities {
 
-.mr-5 {
-    margin-right: 5px;
-}
+	.border-radius(@tlbrtrbl) {
+		-webkit-border-radius: @arguments;
+		-moz-border-radius: @arguments;
+		-o-border-radius: @arguments;
+		border-radius: @arguments;
+	}
+	.border-radius(@tlbr, @trbl) {
+		-webkit-border-radius: @arguments;
+		-moz-border-radius: @arguments;
+		-o-border-radius: @arguments;
+		border-radius: @arguments;
+	}
+	.border-radius(@tl, @trbl, @br) {
+		-webkit-border-radius: @arguments;
+		-moz-border-radius: @arguments;
+		-o-border-radius: @arguments;
+		border-radius: @arguments;
+	}
+	.border-radius(@tl, @tr, @br, @bl) {
+		-webkit-border-radius: @arguments;
+		-moz-border-radius: @arguments;
+		-o-border-radius: @arguments;
+		border-radius: @arguments;
+	}
 
-.mr-10 {
-    margin-right: 10px;
-}
 
-.ml-5 {
-    margin-left: 5px;
-}
+	.box-shadow(@x, @y, @color) {
+		-webkit-box-shadow: @arguments;
+		-moz-box-shadow: @arguments;
+		-o-box-shadow: @arguments;
+		box-shadow: @arguments;
+	}
 
-.labels {
-    line-height: 2;
-}
+	.box-shadow(@x, @y, @blur @color) {
+		-webkit-box-shadow: @arguments;
+		-moz-box-shadow: @arguments;
+		-o-box-shadow: @arguments;
+		box-shadow: @arguments;
+	}
 
-.label-keyword {
-    display: inline-block;
-    background: @theme-label-bg;
-    color: white;
-    font-size: 0.9em;
-    padding: 5px;
-    border: 1px solid @theme-label-border-color;
-    margin-right: 5px;
+	.box-shadow(@x, @y, @blur, @spread, @color) {
+		-webkit-box-shadow: @arguments;
+		-moz-box-shadow: @arguments;
+		-o-box-shadow: @arguments;
+		box-shadow: @arguments;
+	}
 
-    &:last-child {
-        margin-right: 0;
-    }
-}
 
-.link-disguise {
-    color: inherit;
+	// property: background, color, etc
+	// effect: ease, etc
+	// time: 0.5s, etc
+	.transition(@property, @effect, @time) {
+		-webkit-transition: @arguments;
+		-moz-transition: @arguments;
+		-o-transition: @arguments;
+		transition: @arguments;
+	}
+	.transition(@transition) {
+		-webkit-transition: @transition;
+		-moz-transition: @transition;
+		-o-transition: @transition;
+		transition: @transition;
+	}
 
-    &:hover {
-        color: inherit
-    }
-}
 
-.clear-margin {
-    margin: 0;
-}
+	// scale(1,1), rotate(90deg), etc
+	.transform(@transform) {
+		-webkit-transform: @transform;
+		-moz-transform: @transform;
+		-ms-transform: @transform;
+		-o-transform: @transform;
+		// transform: @transform;
+	}
 
-.clear-margin-sm {
-    @media (max-width: @screen-desktop) {
-        margin-bottom: 0;
-    }
-}
 
-.fs-lg { // fs => font-size
-    font-size: 1.33333333em;
-    line-height: .75em;
-    vertical-align: -15%;
-}
+	// name: keyframe name
+	// from: ruleset, ex. { color: @fff; }
+	// to: ruleset
+	.keyframes(@name, @from, @to) {
+		@-webkit-keyframes @name {
+			from { @from(); }
+			to { @to(); }
+		}
+		@-moz-keyframes @name {
+			from { @from(); }
+			to { @to(); }
+		}
+		@-o-keyframes @name {
+			from { @from(); }
+			to { @to(); }
+		}
+		@keyframes @name {
+			from { @from(); }
+			to { @to(); }
+		}
+	}
 
-.fs-2x {
-    font-size: 2em;
-}
 
-.fs-3x {
-    font-size: 3em;
-}
+	// width: screen width
+	// rules: anon ruleset, ex: { color: red; }
+	.screenSmallerThan(@width, @rules) {
+		@media screen and (max-width: @width) {
+			@rules();
+		}
+	}
 
-.fs-4x {
-    font-size: 4em;
-}
 
-.btn-circle-sm {
-    @width: 28px;
+	// width: screen width
+	// rules: anon ruleset
+	.screenLargerThan(@width, @rules) {
+		@media screen and (min-width: @width) {
+			@rules();
+		}
+	}
 
-    width: @width;
-    height: @width;
-    line-height: @width;
-    border-radius: 50%;
-    text-align: center;
-    padding: 0;
-    outline: none !important;
+
+	// name: keyframe name
+	// time: .8s, etc
+	// steps: steps(4), etc
+	// duration: infinite, etc
+	.animation(@name, @time, @steps, @duration) {
+		-webkit-animation: @arguments;
+		-moz-animation: @arguments;
+		-ms-animation: @arguments;
+		-o-animation: @arguments;
+		animation: @arguments;
+	}
+
+
+	// cover, contain, ...
+	.background-size(@size) {
+		-webkit-background-size: @size;
+		-moz-background-size: @size;
+		-o-background-size: @size;
+		background-size: @size;
+	}
+
+	// border-box, etc
+	.box-size(@type) {
+		-webkit-box-sizing: @type;
+		-moz-box-sizing: @type;
+		box-sizing: @type;
+	}
+
+	// hyphenate words
+	// auto, manual, none
+	.hyphenates(@h) {
+		-webkit-hyphens: @h;
+		-moz-hyphens: @h;
+		-ms-hyphens: @h;
+		hyphens: @h;
+	}
+
 }

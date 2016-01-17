@@ -55,17 +55,11 @@ module.exports = function(grunt) {
             assets: {
               cwd: './',
               src: [
-                'self_art-circle.png',
+                'assets/images/**/*',
                 'assets/fonts/**/*'
               ],
               dest: './build/'
             },
-            // resumejson: {
-            //     cwd: './',
-            //     src: [ 'resume.json' ],
-            //     dest: './node_modules/resume-schema',
-            //     expand: true
-            // },
             build: {
                 cwd: './assets/css',
                 src: [ 'theme.css' ],

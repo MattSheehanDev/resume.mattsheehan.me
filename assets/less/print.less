@@ -1,4 +1,9 @@
 @media print {
+    // body {
+    //   // width: 8.5in;
+    //   height: 11in;
+    // }
+
     a[href]:after {
         content: none !important;
     }
@@ -11,25 +16,12 @@
         text-align: center;
         padding: 0;
 
-        .profile-pic {
-            display: inline-block;
-            vertical-align: middle;
-            img {
-                border-radius: 0;
-            }
-        }
+        .profile-pic-container {
+          flex-flow: row nowrap;
 
-        .name-and-profession {
-            display: inline-block;
-            vertical-align: middle;
+          .name-and-profession {
             margin-left: 15px;
-        }
-
-        .contact-details {
-            .detail {
-                .make-xs-column(3);
-                padding: 0;
-            }
+          }
         }
 
         // .social-links {
@@ -44,6 +36,7 @@
         display: none;
     }
 
+
     .pagebreak {
         page-break-after: auto;
     }
@@ -51,6 +44,5 @@
       page-break-after: avoid;
       page-break-before: avoid;
     }
-
 
 }

@@ -1,0 +1,55 @@
+
+a {
+  text-decoration: none;
+  color: @green-dark;
+
+  #utilities > .transition(all, cubic-bezier(0.4, 0, 0.2, 1), 0.2s);
+
+  &:focus, &:hover {
+    text-decoration: none;
+    text-shadow: none;
+    color: @green-darker;
+  }
+}
+
+
+.clear-margin {
+    margin: 0;
+}
+
+.mr-5 {
+    margin-right: 5px;
+}
+.mr-10 {
+    margin-right: 10px;
+}
+
+
+.labels {
+    line-height: 2;
+}
+
+.label-keyword {
+    display: inline-block;
+    background: @theme-label-bg;
+    color: white;
+    font-size: 0.9em;
+    padding: 5px;
+    border: 1px solid @theme-label-border-color;
+    margin-right: 5px;
+
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+
+.fs-lg { // fs => font-size
+    font-size: 1.33333333em;
+    line-height: .75em;
+    vertical-align: -15%;
+}
+
+.fs-2x {
+    font-size: 2em;
+}

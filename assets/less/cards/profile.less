@@ -1,3 +1,5 @@
+@import "../utilities";
+@import "card";
 
 .profile-card-wrapper {
   position: fixed;
@@ -13,13 +15,34 @@
 
 #profile-card {
 
-  .profile-pic {
-    padding: 20px 0;
+  .profile-pic-container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
 
-  .profile-pic img {
-    width: 100px;
-    height: 100px;
+  .profile-pic {
+    display: flex;
+    width: 6pc;
+    height: 6pc;
+    // padding: 20px 0;
+
+    border: 1px solid black;
+    #utilities > .border-radius(50%);
+    #utilities > .transition(border-color, cubic-bezier(0.4, 0, 0.2, 1), 0.2s);
+
+    &:hover {
+      border-color: @green-dark;
+    }
+
+    > img {
+      display: block;
+      margin: auto;
+      width: 5.5pc;
+      height: 5.5pc;
+    }
   }
 
   .contact-details {
@@ -52,27 +75,27 @@
 
   .social-links {
     line-height: 2.5;
-  }
 
-  .social-link {
-    margin-left: 5px;
-    min-width: 35px;
-    display: inline-block;
+    .social-link {
+      margin-left: 5px;
+      min-width: 35px;
+      display: inline-block;
 
-    &:first-child {
-      margin-left: 0;
-    }
+      &:first-child {
+        margin-left: 0;
+      }
 
-    &:hover {
-      text-decoration: none;
+      &:hover {
+        text-decoration: none;
+      }
     }
   }
 
 
   @media (max-width: @screen-desktop) {
-    .profile-pic {
-      padding: 10px 0;
-    }
+    // .profile-pic {
+    //   padding: 10px 0;
+    // }
 
     .name {
       margin-top: 10px;
@@ -100,6 +123,19 @@
       align-items: center;
     }
   }
+}
+
+
+
+.make-social-link(@color){
+    color: #CCC;
+    #utilities > .transition(all, cubic-bezier(0.4, 0, 0.2, 1), 0.2s);
+
+    &:hover, &:focus {
+        text-decoration: none;
+        // color: darken(@color, 10%);
+        color: @color;
+    }
 }
 
 .link-github { .make-social-link(@github-color); }
