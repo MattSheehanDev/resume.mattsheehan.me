@@ -2,17 +2,17 @@
   "basics": {
     "name": "Matt Sheehan",
     "label": "Software Developer",
-    "summary": "Fulfill a position where creative programming is inspired, learning and research is encouraged, and hard work is valued.",
+    "summary": "Achieve a position that utilizes my experience architecting large software projects, researching and learning technologies that can be applied, and my strong ability to work independently and with teams.",
     "website": "http://mattsheehan.me",
     "phone": "330-614-1599",
     "email": "sheehamj@outlook.com",
     "picture": "assets/images/self_art-circle.png",
     "location": {
       "address": "2131 Copley Rd",
-      "postalCode": "44320",
       "city": "Akron",
+      "region": "OH",
       "countryCode": "US",
-      "region": "OH"
+      "postalCode": "44320"
     },
     "profiles": [
       {
@@ -25,15 +25,24 @@
   "work": [
     {
       "company": "Apteryx, Inc",
+      "position": "Project lead",
+      "website": "http://www.apteryx.com",
+      "startDate": "2016-01-01",
+      "highlights": [
+        "Lead in the development of the XvWeb client software.",
+        "Worked in ASP.NET 5, javascript, and other web technologies."
+      ]
+    },
+    {
+      "company": "Apteryx, Inc",
       "position": "Software Developer",
       "website": "http://www.apteryx.com",
       "startDate": "2013-05-20",
-      "endDate": "2016-01-01",
       "summary": "",
       "highlights": [
         "Developed Windows 8/8.1 metro app for viewing x-rays with image enhancement algorithms and manipulations (gaussian blur, unsharp mask, b/c/g, ...).",
         "Initiated cloud web application with the ability to enhance images with WebGL shaders.",
-        "Created the canonical internal javascript library for web applicatins, including web-components and custom binding tags.",
+        "Created the canonical internal javascript library for web applications, including web-components and custom binding tags.",
         "Deployed a distributed system of micro-services for file syncing, program logging, and user auditing.",
         "Programmed in technologies including DirectX, ASP.NET MVC, WebGL, SQLite, and SQL Server."
       ]
@@ -68,6 +77,14 @@
         "Typescript",
         "Javascript",
         "HTML", "LESS", "CSS"
+      ]
+    },
+    {
+      "name": "Development Environment",
+      "level": "Master",
+      "keywords": [
+        "Visual Studio 2013/2015",
+        "Mercurial"
       ]
     },
     {
@@ -116,7 +133,7 @@
       "summary": "The web home of Matt Sheehan"
     },
     {
-      "name": "mslisp",
+      "name": "Language design",
       "website": "https://github.com/sheehamj13/mslisp",
       "summary": ".NET toy lisp dialect"
     }
@@ -126,8 +143,8 @@
       "name": "Programming",
       "summary": "",
       "keywords": [
-        "Language Design",
         "Program Architecture",
+        "Language Design",
         "Embedded Systems"
       ]
     }

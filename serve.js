@@ -20,6 +20,7 @@ var CONTENT_TYPE = {
   WOFF2: "application/font-woff2",
   TTF: "application/x-font-ttf",
   EOT: "application/vnd.ms-fontobject",
+  PDF: "application/pdf"
 }
 
 var port = 8000;
@@ -57,6 +58,10 @@ http.createServer(function(req, res) {
   }
   else if (".svg" == ext) {
     res.writeHead(200, { "Content-Type": CONTENT_TYPE.SVG });
+    res.end(file);
+  }
+  else if (".pdf" == ext) {
+    res.writeHead(200, { "Content-Type": CONTENT_TYPE.pdf });
     res.end(file);
   }
   else {

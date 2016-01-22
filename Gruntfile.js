@@ -56,7 +56,8 @@ module.exports = function(grunt) {
               cwd: './',
               src: [
                 'assets/images/**/*',
-                'assets/fonts/**/*'
+                'assets/fonts/**/*',
+                'Matthew-Sheehan-PDF.pdf'
               ],
               dest: './build/'
             },

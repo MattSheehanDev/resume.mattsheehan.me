@@ -31,6 +31,11 @@ section.profile-card-wrapper
       .name-and-profession
         h3(itemprop="name"): b= resume.basics.name
         h5.text-muted(itemprop="jobTitle")= resume.basics.label
+        
+      a.download(
+        href="/Matthew-Sheehan-PDF.pdf",
+        target="_blank",
+        title="Download " + resume.basics.name + "'s resume")= "Download As PDF"
 
     hr
 

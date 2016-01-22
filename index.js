@@ -1,6 +1,5 @@
 var fs = require('fs');
 var jade = require('jade');
-var _ = require('underscore');
 var utils = require('jsonresume-themeutils');
 var moment = require('moment');
 
@@ -10,139 +9,163 @@ utils.setConfig({ date_format: 'MMM, YYYY' });
 
 
 function interpolate(object, keyPath) {
-    var keys = keyPath.split('.');
+  var keys = keyPath.split('.');
 
-    return _(keys).reduce(function(res, key) {
-        return (res || {})[key];
-    }, object);
+  var obj = object;
+  return keys.every(function (key) {
+    obj = obj[key];
+    return obj != null && obj != undefined;
+  });
 }
 
 function capitalize(str) {
-    if (str) {
-        str = str.toString();
-        return str[0].toUpperCase() + str.slice(1).toLowerCase();
-    }
+  if (str) {
+    str = str.toString();
+    return str[0].toUpperCase() + str.slice(1).toLowerCase();
+  }
 
-    return str;
+  return str;
 }
 
 function getFloatingNavItems(resume) {
-    var floating_nav_items = [
-        {label: 'About', target: 'about', icon: 'board', requires: 'basics.summary'},
-        {label: 'Work Experience', target: 'work-experience', icon: 'office', requires: 'work'},
-        {label: 'Skills', target: 'skills', icon: 'tools', requires: 'skills'},
-        {label: 'Education', target: 'education', icon: 'graduation-cap', requires: 'education'},
-        {label: 'Awards & Activities', target: 'awards', icon: 'trophy', requires: 'awards'},
-        {label: 'Volunteer Work', target: 'volunteer-work', icon: 'child', requires: 'volunteer'},
-        {label: 'Projects', target: 'publications', icon: 'newspaper', requires: 'publications'},
-        {label: 'Interests', target: 'interests', icon: 'heart', requires: 'interests'},
-        {label: 'References', target: 'references', icon: 'thumbs-up', requires: 'references'}
-    ];
+  var floating_nav_items = [
+    {label: 'About', target: 'about', icon: 'board', requires: 'basics.summary'},
+    {label: 'Work Experience', target: 'work-experience', icon: 'office', requires: 'work'},
+    {label: 'Skills', target: 'skills', icon: 'tools', requires: 'skills'},
+    {label: 'Education', target: 'education', icon: 'graduation-cap', requires: 'education'},
+    {label: 'Awards & Activities', target: 'awards', icon: 'trophy', requires: 'awards'},
+    {label: 'Volunteer Work', target: 'volunteer-work', icon: 'child', requires: 'volunteer'},
+    {label: 'Projects', target: 'publications', icon: 'newspaper', requires: 'publications'},
+    {label: 'Interests', target: 'interests', icon: 'heart', requires: 'interests'},
+    {label: 'References', target: 'references', icon: 'thumbs-up', requires: 'references'}
+  ];
 
-    return _(floating_nav_items).filter(function(item) {
-        var value = interpolate(resume, item.requires);
-
-        return !_.isEmpty(value);
-    });
+  return floating_nav_items.filter(function(item) {
+    var value = interpolate(resume, item.requires);
+    return value
+  });
 }
 
 function render(resume) {
-    var addressValues;
-    var addressAttrs = ['address', 'city', 'region', 'countryCode', 'postalCode'];
-    // var css = fs.readFileSync(__dirname + '/assets/css/theme.css', 'utf-8');
+  // Get url of picture
+  resume.basics.picture = utils.getUrlForPicture(resume);
 
-    resume.basics.picture = utils.getUrlForPicture(resume);
-
-    addressValues = _(addressAttrs).map(function(key) {
-        return resume.basics.location[key];
-    });
-
-    resume.basics.computed_location = _.compact(addressValues).join(', ');
-
-    if (resume.languages) {
-        resume.basics.languages = _.pluck(resume.languages, 'language').join(', ');
+  // Compute location string
+  addressValues = [];
+  ['address', 'city', 'region', 'countryCode', 'postalCode'].forEach(function (key) {
+    if (resume.basics.location[key]) {
+      addressValues.push(resume.basics.location[key]);
     }
+  });
+  resume.basics.computed_location = addressValues.join(', ');
 
-    _(resume.basics.profiles).each(function(profile) {
-        var label = profile.network.toLowerCase();
-
-        profile.url = utils.getUrlForProfile(resume, label);
-        profile.label = label;
+  // Compute languages string
+  if (resume.languages) {
+    languageValues = [];
+    resume.languages.forEach(function(obj) {
+      if (obj.language) {
+        languageValues.push(obj.language);
+      }
     });
+    resume.basics.languages = languageValues.join(', ')
+  }
 
-    resume.basics.top_five_profiles = resume.basics.profiles.slice(0, 5);
-    resume.basics.remaining_profiles = resume.basics.profiles.slice(5);
-
-    _.each(resume.work, function(work_info) {
-        var start_date = moment(work_info.startDate);
-        var end_date = work_info.endDate;
-        var did_leave_company = !!end_date;
-
-        if (end_date) {
-            work_info.endDate = utils.getFormattedDate(end_date);
-        }
-
-        if (start_date) {
-            end_date = end_date ? moment(end_date) : moment();
-            work_info.startDate = utils.getFormattedDate(start_date);
-
-            work_info.duration = moment.preciseDiff(start_date, end_date);
-        }
+  // Normalize network profiles
+  if (resume.basics.profiles) {
+    resume.basics.profiles.forEach(function(profile) {
+      profile.label = profile.network.toLowerCase();
+      profile.url = utils.getUrlForProfile(resume, profile.label);
     });
+  }
 
-    _.each(resume.skills, function(skill_info) {
-        var levels = ['Beginner', 'Intermediate', 'Advanced', 'Master'];
+  // Organize network profiles into top five and the rest
+  resume.basics.top_five_profiles = resume.basics.profiles.slice(0, 5);
+  resume.basics.remaining_profiles = resume.basics.profiles.slice(5);
 
-        if (skill_info.level) {
-            skill_info.skill_class = skill_info.level.toLowerCase();
-            skill_info.level = capitalize(skill_info.level.trim());
-            skill_info.display_progress_bar = _.contains(levels, skill_info.level);
-        }
+
+  // Format work experiences
+  if (resume.work) {
+    resume.work.forEach(function(work) {
+      var start_date = moment(work.startDate);
+      var end_date = work.endDate;
+
+
+      if (end_date) {
+        work.endDate = utils.getFormattedDate(end_date);
+        end_date = moment(end_date);
+      }
+      else {
+        work.endDate = "Present";
+        end_date = moment();
+      }
+
+      if (start_date) {
+        work.startDate = utils.getFormattedDate(start_date);
+        work.duration = moment.preciseDiff(start_date, end_date);
+      }
     });
+  }
 
-    _.each(resume.education, function(education_info) {
-        _.each(['startDate', 'endDate'], function(type) {
-            var date = education_info[type];
-
-            if (date) {
-                education_info[type] = utils.getFormattedDate(date);
-            }
-        });
+  // Format skills
+  if (resume.skills) {
+    var levels = ['Beginner', 'Intermediate', 'Advanced', 'Master'];
+    resume.skills.forEach(function(skill) {
+      if (skill.level) {
+        skill.skill_class = skill.level.toLowerCase();
+        skill.level = capitalize(skill.level.trim());
+        skill.display_progress_bar = levels.some(function(lvl) { return lvl == skill.level ? true : false });
+      }
     });
+  }
 
-    _.each(resume.awards, function(award) {
-        var date = award.date;
-
-        if (date) {
-            award.date = utils.getFormattedDate(date, 'MMM DD, YYYY');
-        }
+  // Format education dates
+  if (resume.education) {
+    resume.education.forEach(function(education){
+      if (education.startDate) {
+        education.startDate = utils.getFormattedDate(education.startDate);
+      }
+      if (education.endDate) {
+        education.endDate = utils.getFormattedDate(education.endDate);
+      }
     });
+  }
 
-    _.each(resume.volunteer, function(volunteer_info) {
-        _.each(['startDate', 'endDate'], function (type) {
-            var date = volunteer_info[type];
+  // Format award dates
+  if (resume.awards) {
+    resume.awards.forEach(function(award) {
+      if (award.date) {
+        award.date = utils.getFormattedDate(award.date, 'MMM DD, YYYY');
+      }
+    })
+  }
 
-            if (date) {
-                volunteer_info[type] = utils.getFormattedDate(date);
-            }
-        });
+  // Format volunteer dates
+  if (resume.volunteer) {
+    resume.volunteer.forEach(function(volunteer) {
+      if (volunteer.startDate) {
+        volunteer.startDate = utils.getFormattedDate(volunteer.startDate);
+      }
+      if (volunteer.endDate) {
+        volunteer.endDate = utils.getFormattedDate(volunteer.endDate);
+      }
     });
+  }
 
-    _.each(resume.publications, function(publication_info) {
-        var date = publication_info.releaseDate;
-
-        if (date) {
-            publication_info.releaseDate = utils.getFormattedDate(date, 'MMM DD, YYYY');
-        }
+  // Format publication dates
+  if (resume.publications) {
+    resume.publications.forEach(function(pub) {
+      if (pub.releaseDate) {
+        pub.releaseDate = utils.getFormattedDate(pub.releaseDate, 'MMM DD, YYYY');
+      }
     });
+  }
 
-    return jade.renderFile(__dirname + '/jade/index.jade', {
-      resume: resume,
-      floating_nav_items: getFloatingNavItems(resume),
-      // css: css
-    });
+  return jade.renderFile(__dirname + '/jade/index.jade', {
+    resume: resume,
+    floating_nav_items: getFloatingNavItems(resume)
+  });
 }
 
 module.exports = {
-    render: render
+  render: render
 };
