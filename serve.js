@@ -14,7 +14,9 @@ var path = require("path");
 
 var CONTENT_TYPE = {
   HTML: "text/html",
+  CSS: "text/css",
   PNG: "image/png",
+  ICO: "image/x-icon",
   SVG: "application/svg+xml",
   WOFF: "application/font-woff",
   WOFF2: "application/font-woff2",
@@ -29,11 +31,19 @@ http.createServer(function(req, res) {
 
   var ext = path.extname(req.url);
   var fullPath = path.join(__dirname, "/build/", req.url);
-
+  console.log(ext);
   var file = fs.readFileSync(fullPath);
 
   if (".html" == ext) {
     res.writeHead(200, { "Content-Type": CONTENT_TYPE.HTML });
+    res.end(file);
+  }
+  else if (".css" == ext) {
+    res.writeHead(200, { "Content-Type": CONTENT_TYPE.CSS });
+    res.end(file);
+  }
+  else if (".ico" == ext) {
+    res.writeHead(200, { "Content-Type": CONTENT_TYPE.ICO });
     res.end(file);
   }
   else if (".png" == ext) {
