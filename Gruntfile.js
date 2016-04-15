@@ -58,21 +58,10 @@ module.exports = function(grunt) {
                 'assets/images/**/*',
                 'assets/fonts/**/*',
                 'Matthew-Sheehan-PDF.pdf',
-                'external/**/*'
+                'external/**/*',
+                'robots.txt'
               ],
               dest: './build/'
-            },
-            build: {
-                cwd: './assets/css',
-                src: [ 'theme.css' ],
-                dest: './build/assets/css',
-                expand: true
-            },
-            favicon: {
-                cwd: './',
-                src: [ 'favicon.ico' ],
-                dest: './build/',
-                expand: true
             }
         },
         clean: {
@@ -115,12 +104,7 @@ module.exports = function(grunt) {
         'cssmin',
         'exec:build_index',
         'copy:assets',
-        // 'cssmin',
-        /* Uncomment this item (and the comma above) if you add a favicon.ico
-           in the project root. You'll also need to uncomment the <link...> tag
-           at the top of resume.template.
-         */
-        // 'copy:favicon'
+        // 'cssmin'
     ]);
     grunt.registerTask('serve', [
         'build',
