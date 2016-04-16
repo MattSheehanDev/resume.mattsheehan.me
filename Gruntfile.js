@@ -59,7 +59,7 @@ module.exports = function(grunt) {
                 'assets/fonts/**/*',
                 'Matthew-Sheehan-PDF.pdf',
                 'external/**/*',
-                'robots.txt'
+                '*.txt'
               ],
               dest: './build/'
             }
