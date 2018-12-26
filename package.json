@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "grunt build",
-    "serve": "grunt exec:run_server"
+    "serve": "grunt exec:run_server",
+    "watch": "grunt watch"
   },
   "repository": {
     "type": "git",

@@ -1,59 +1,27 @@
-# JSON Resume
+This is a slightly modified -- and very out of date -- version of the [Elegant Theme for JsonResume](https://github.com/mudassir0909/jsonresume-theme-elegant)
 
-### Social Profiles
-The profiles are shown in the order in which they are specified in the `basics.profiles` array. By default, only 5 profiles are shown & others are revealed on demand.
+__This fork is deprecated and no longer supported__
 
 
-#### Supported Profiles
-* angellist
-* behance
-* bitbucket
-* codepen
-* dribbble
-* dribble
-* exercism
-* facebook
-* foursquare
-* instagram
-* github
-* googleplus
-* gratipay
-* hackernews
-* lastfm
-* linkedin
-* pinterest
-* reddit
-* skype
-* soundcloud
-* spotify
-* stackexchange
-* stackoverflow
-* tumblr
-* twitter
-* vimeo
-* youtube
+#### Building
 
-### Credits
-* Floating Menu: inspired by [Smart Fixed Navigation](http://codyhouse.co/demo/smart-fixed-navigation/index.html)
-
-### Contributing
-```
-$ git clone https://github.com/sheehamj13/jsonresume-theme-elegant.git
-$ cd jsonresume-theme-elegant
-$ npm install
-$ grunt build
-$ grunt watch // watches for less file changes
-$ grunt exec:run_server
+```sh
+npm install
+npm run build
+npm run watch   # watches for .less file changes
+npm run serve
 ```
 
-Visit [http://localhost:8000](http://localhost:8000) to see the theme in action.
+Visit [http://localhost:8000](http://localhost:8000) to see it in action.
 
-##### Testing JSON changes
+#### Updating resume.json changes
 You can test your changes by updating `resume.json` file.
 You might want to rerun `grunt build` whenever you make any changes to `resume.json`
 
-##### Updating Styles
+#### Updating Styles
 All the LESS files are organized under the folder `assets/less/`. Please go through the comments inside `theme.less` to find out which file to put your LESS changes. Grunt compiles `assets/less/theme.less` to `assets/css/theme.css` which is used eventually in the theme.
 
-##### Updating Javascript
+#### Updating Javascript
 All the javascript changes go into `index.js` which is responsible for rendering the theme.
+
+
