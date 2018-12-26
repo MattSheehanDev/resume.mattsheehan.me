@@ -13,7 +13,7 @@ var resume = JSON.parse(fs.readFileSync('./resume.json', 'utf-8'));
 
 
 if (!fs.existsSync("./build")) {
-  fs.mkdir("./build/");  
+  fs.mkdirSync("./build/");  
 }
 fs.writeFile("./build/index.html", render(), function(err) {
     if(err) {

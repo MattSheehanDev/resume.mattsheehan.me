@@ -11,3 +11,7 @@ node_modules/*
 build/*
 assets/css/*
 npm-debug.log
+
+
+**/.DS_Store
+
