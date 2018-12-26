@@ -13,6 +13,7 @@ npm run serve
 ```
 
 Visit [http://localhost:8000](http://localhost:8000) to see it in action.
+The build output is located in the `./build` directory.
 
 #### Updating resume.json changes
 You can test your changes by updating `resume.json` file.
